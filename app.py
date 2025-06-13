@@ -44,7 +44,9 @@ if uploaded_file is not None:
                     y1 = int(ymin * h)
                     x2 = int(xmax * w)
                     y2 = int(ymax * h)
-                    color = tuple(int(255*c) for c in colormap(i % 10)[:3][::-1])
+                    rgb = np.array(colormap(i % 10)[:3]) * 0.4  # 0.4 = 40%, you can tweak this
+                    color = tuple(int(255*c) for c in rgb[::-1])
+                    
                     cv2.rectangle(
                         image_with_boxes,
                         (x1, y1),
