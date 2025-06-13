@@ -52,7 +52,7 @@ if uploaded_file is not None:
                         (x1, y1),
                         (x2, y2),
                         color=color,
-                        thickness=2,
+                        thickness=5,
                     )
                 st.image(image_with_boxes, caption="Image with Bounding Boxes", use_container_width=True)
         except Exception as e:
