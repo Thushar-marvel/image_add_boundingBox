@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import cv2
 from PIL import Image
+from PIL import ImageOps
 import json
 import matplotlib.pyplot as plt
 
@@ -10,8 +11,13 @@ st.title("Draw MULTIPLE Normalized Bounding Boxes on Uploaded Image")
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
-    image = Image.open(uploaded_file).convert("RGB")
+    
+    
+    image = Image.open(uploaded_file)
+    image = ImageOps.exif_transpose(image)  # <-- auto-rotate
+    image = image.convert("RGB")
     image_np = np.array(image)
+
     h, w = image_np.shape[:2]
 
     st.image(image, caption="Uploaded Image", use_container_width=True)
